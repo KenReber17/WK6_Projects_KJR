@@ -11,11 +11,14 @@ public class AITarget : MonoBehaviour
     private NavMeshAgent m_Agent;
     private Animator m_Animator;
     private float m_Distance;
+    //private Vector3 m_StartingPoint;
+    //private bool m_PathCalculate = true;
 
     void Start()
     {
         m_Agent = GetComponent<NavMeshAgent>();
         m_Animator = GetComponent<Animator>();
+        //m_StartingPoint = transform.position;
     }
 
      public void NewEvent()
@@ -51,8 +54,21 @@ public class AITarget : MonoBehaviour
         else
         {
             m_Agent.isStopped = false;
+            // 2 lines removed to update Enemy return to starting point, if out of range
             m_Animator.SetBool("Attack", false);
             m_Agent.destination = Target.position;
+            //if (!m_Agent.hasPath && m_PathCalculate)
+            //{
+                //m_Agent.destination = m_StartingPoint;
+                //m_PathCalculate = false;
+            //}
+            //else
+            //{
+                //m_Animator.SetBool("Attack", false);
+                //m_Agent.destination = Target.position;
+                //m_PathCalculate = true;
+            //}
+
         }
 
         
